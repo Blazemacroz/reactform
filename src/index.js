@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const Form = () => {
+  const [username, setUsername] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const username = event.target.username.value
+    console.log(username);
+    setUsername('')
+  }
+
+  const handleChange = (event) => {
+    setUsername(event.target.value)
+  }
   return (
     <div id='container'>
       <div id='navbar'>
         Form.js
       </div>
-      <form>
-        {/* your form fields here */}
-      </form>
+        {<form onSubmit={handleSubmit}>
+  <label htmlFor='username'>Username:</label>
+  <input type='text' name='username' value={username} onChange={handleChange} />
+  <button type='submit'>Submit</button>
+</form>
+};
     </div>
   )
 }
